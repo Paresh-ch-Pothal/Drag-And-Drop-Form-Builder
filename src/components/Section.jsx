@@ -165,6 +165,7 @@ import FieldPreview from './FieldPreview';
 import FieldEditModal from './FieldEditModal';
 import { useSectionContext } from '../context/context';
 import { arrayMove } from '@dnd-kit/sortable';
+import { Trash2 } from 'lucide-react';
 
 const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
   const {
@@ -292,7 +293,7 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
               className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
               onClick={handleDeleteSection}
             >
-              <span className="hidden sm:inline">🗑️ Delete</span>
+              <span className="hidden sm:inline"><Trash2 color='white' size={20}/></span>
               <span className="sm:hidden">🗑️</span>
             </button>
           </div>
