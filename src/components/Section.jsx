@@ -282,7 +282,7 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
                 </>
               ) : (
                 <>
-                  <span className="hidden sm:inline">👁️ Preview</span>
+                  <span className="hidden sm:inline">Preview</span>
                   <span className="sm:hidden">👁️</span>
                 </>
               )}

@@ -24,6 +24,7 @@
 // export default FieldPreview;
 
 
+import { ScanSearch } from 'lucide-react';
 import React from 'react';
 
 const FieldPreview = ({ fields }) => {
@@ -148,7 +149,7 @@ const FieldPreview = ({ fields }) => {
       <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-            <span className="text-2xl">👁️</span>
+            <span className="text-2xl"><ScanSearch color='black'/></span>
           </div>
           <div>
             <h4 className="text-xl font-bold">Live Preview</h4>

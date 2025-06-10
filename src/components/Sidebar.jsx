@@ -1,3 +1,4 @@
+import { ClipboardType } from 'lucide-react';
 import React from 'react';
 
 const inputItems = [
@@ -29,7 +30,7 @@ const Sidebar = () => {
       <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 shadow-lg z-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-            <span className="text-2xl">🧩</span>
+            <span className="text-2xl"><ClipboardType color='black'/></span>
           </div>
           <div>
             <h2 className="text-xl font-bold">Form Builder</h2>
