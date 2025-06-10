@@ -1,22 +1,23 @@
 import { ClipboardType } from 'lucide-react';
 import React from 'react';
+import { Binary, CalendarDays, Circle, CircleCheckBig, Clock, LetterText, Link, LockKeyhole, Mail, MessageCircle, MoveUp, Palette, Phone, SquareMousePointer, Upload } from 'lucide-react';
 
 const inputItems = [
-  { fieldType: 'text', label: 'Text Input', icon: '📝', color: 'from-blue-400 to-blue-600', description: 'Single line text field' },
-  { fieldType: 'email', label: 'Email Input', icon: '📧', color: 'from-green-400 to-green-600', description: 'Email validation input' },
-  { fieldType: 'password', label: 'Password Input', icon: '🔒', color: 'from-red-400 to-red-600', description: 'Secure password field' },
-  { fieldType: 'number', label: 'Number Input', icon: '🔢', color: 'from-purple-400 to-purple-600', description: 'Numeric input only' },
-  { fieldType: 'date', label: 'Date Picker', icon: '📅', color: 'from-indigo-400 to-indigo-600', description: 'Date selection widget' },
-  { fieldType: 'textarea', label: 'Text Area', icon: '📄', color: 'from-teal-400 to-teal-600', description: 'Multi-line text input' },
-  { fieldType: 'select', label: 'Dropdown Select', icon: '📋', color: 'from-orange-400 to-orange-600', description: 'Multiple choice dropdown' },
-  { fieldType: 'radio', label: 'Radio Buttons', icon: '🔘', color: 'from-pink-400 to-pink-600', description: 'Single choice selection' },
-  { fieldType: 'checkbox', label: 'Checkboxes', icon: '☑️', color: 'from-cyan-400 to-cyan-600', description: 'Multiple choice options' },
-  { fieldType: 'file', label: 'File Upload', icon: '📎', color: 'from-yellow-400 to-yellow-600', description: 'File attachment field' },
-  { fieldType: 'color', label: 'Color Picker', icon: '🎨', color: 'from-rose-400 to-rose-600', description: 'Color selection tool' },
-  { fieldType: 'range', label: 'Range Slider', icon: '🎚️', color: 'from-violet-400 to-violet-600', description: 'Numeric range selector' },
-  { fieldType: 'time', label: 'Time Picker', icon: '⏰', color: 'from-emerald-400 to-emerald-600', description: 'Time selection input' },
-  { fieldType: 'url', label: 'URL Input', icon: '🔗', color: 'from-sky-400 to-sky-600', description: 'Website URL field' },
-  { fieldType: 'tel', label: 'Phone Number', icon: '📞', color: 'from-amber-400 to-amber-600', description: 'Telephone number input' }
+  { fieldType: 'text', label: 'Text Input', icon: <LetterText />, color: 'from-blue-400 to-blue-600', description: 'Single line text field' },
+  { fieldType: 'email', label: 'Email Input', icon: <Mail />, color: 'from-green-400 to-green-600', description: 'Email validation input' },
+  { fieldType: 'password', label: 'Password Input', icon: <LockKeyhole />, color: 'from-red-400 to-red-600', description: 'Secure password field' },
+  { fieldType: 'number', label: 'Number Input', icon: <Binary />, color: 'from-purple-400 to-purple-600', description: 'Numeric input only' },
+  { fieldType: 'date', label: 'Date Picker', icon: <CalendarDays />, color: 'from-indigo-400 to-indigo-600', description: 'Date selection widget' },
+  { fieldType: 'textarea', label: 'Text Area', icon: <MessageCircle />, color: 'from-teal-400 to-teal-600', description: 'Multi-line text input' },
+  { fieldType: 'select', label: 'Dropdown Select', icon: <SquareMousePointer />, color: 'from-orange-400 to-orange-600', description: 'Multiple choice dropdown' },
+  { fieldType: 'radio', label: 'Radio Buttons', icon: <Circle />, color: 'from-pink-400 to-pink-600', description: 'Single choice selection' },
+  { fieldType: 'checkbox', label: 'Checkboxes', icon: <CircleCheckBig />, color: 'from-cyan-400 to-cyan-600', description: 'Multiple choice options' },
+  { fieldType: 'file', label: 'File Upload', icon:  <Upload />, color: 'from-yellow-400 to-yellow-600', description: 'File attachment field' },
+  { fieldType: 'color', label: 'Color Picker', icon: <Palette />, color: 'from-rose-400 to-rose-600', description: 'Color selection tool' },
+  { fieldType: 'range', label: 'Range Slider', icon: <MoveUp />, color: 'from-violet-400 to-violet-600', description: 'Numeric range selector' },
+  { fieldType: 'time', label: 'Time Picker', icon: <Clock />, color: 'from-emerald-400 to-emerald-600', description: 'Time selection input' },
+  { fieldType: 'url', label: 'URL Input', icon: <Link />, color: 'from-sky-400 to-sky-600', description: 'Website URL field' },
+  { fieldType: 'tel', label: 'Phone Number', icon: <Phone />, color: 'from-amber-400 to-amber-600', description: 'Telephone number input' }
 ];
 
 const Sidebar = () => {
@@ -198,15 +199,6 @@ const Sidebar = () => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="p-4 border-t border-gray-200 bg-gray-50">
-        <div className="text-center">
-          <p className="text-xs text-gray-500">
-            💡 Drag components to build your form
-          </p>
         </div>
       </div>
     </aside>

@@ -1,155 +1,3 @@
-// import React, { useState } from 'react';
-// import {
-//   DndContext,
-//   PointerSensor,
-//   closestCenter,
-//   useSensor,
-//   useSensors,
-// } from '@dnd-kit/core';
-// import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-// import SortableField from './SortableField';
-// import FieldPreview from './FieldPreview';
-// import FieldEditModal from './FieldEditModal';
-// import { useSectionContext } from '../context/context';
-// import { arrayMove } from '@dnd-kit/sortable';
-
-// const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
-//   const {
-//     setSections,
-//     reorderFields,
-//     addFieldToSection
-//   } = useSectionContext();
-
-//   const sensors = useSensors(useSensor(PointerSensor));
-//   const [editingName, setEditingName] = useState(false);
-//   const [editField, setEditField] = useState(null);
-
-//   const handleDrop = (e) => {
-//     const data = e.dataTransfer.getData('application/json');
-//     if (data) {
-//       const field = JSON.parse(data);
-//       addFieldToSection(section.id, field);
-//     }
-//   };
-
-//   const handleDragEnd = (event) => {
-//     const { active, over } = event;
-//     if (!over || active.id === over.id) return;
-//     const oldIndex = section.fields.findIndex((f) => f.id === active.id);
-//     const newIndex = section.fields.findIndex((f) => f.id === over.id);
-//     const reordered = arrayMove(section.fields, oldIndex, newIndex);
-//     reorderFields(section.id, reordered);
-//   };
-
-//   const handleDeleteSection = () => {
-//     setSections((prev) => prev.filter((s) => s.id !== section.id));
-//   };
-
-//   const handleFieldDelete = (fieldId) => {
-//     setSections((prev) =>
-//       prev.map((sec) =>
-//         sec.id === section.id
-//           ? { ...sec, fields: sec.fields.filter((f) => f.id !== fieldId) }
-//           : sec
-//       )
-//     );
-//   };
-
-//   const handleFieldSave = (updatedField) => {
-//     setSections((prev) =>
-//       prev.map((sec) =>
-//         sec.id === section.id
-//           ? {
-//               ...sec,
-//               fields: sec.fields.map((f) =>
-//                 f.id === updatedField.id ? updatedField : f
-//               ),
-//             }
-//           : sec
-//       )
-//     );
-//     setEditField(null);
-//   };
-
-//   const handleNameChange = (e) => {
-//     setSections((prev) =>
-//       prev.map((sec) =>
-//         sec.id === section.id ? { ...sec, name: e.target.value } : sec
-//       )
-//     );
-//   };
-
-//   return (
-//     <div
-//       className="bg-gray-100 p-4 rounded border mb-6"
-//       onDrop={handleDrop}
-//       onDragOver={(e) => e.preventDefault()}
-//     >
-//       <div className="flex justify-between mb-2">
-//         {editingName ? (
-//           <input
-//             value={section.name}
-//             onChange={handleNameChange}
-//             onBlur={() => setEditingName(false)}
-//             className="border px-2 py-1 rounded w-full mr-2"
-//             autoFocus
-//           />
-//         ) : (
-//           <h3
-//             className="font-semibold text-lg cursor-pointer"
-//             onClick={() => setEditingName(true)}
-//           >
-//             {section.name}
-//           </h3>
-//         )}
-//         <div className="flex gap-2">
-//           <button
-//             className="text-sm bg-gray-300 px-2 rounded"
-//             onClick={() =>
-//               setPreviewSectionId(previewSectionId === section.id ? null : section.id)
-//             }
-//           >
-//             {previewSectionId === section.id ? 'Hide Preview' : 'Preview'}
-//           </button>
-//           <button
-//             className="text-sm bg-red-500 text-white px-2 rounded"
-//             onClick={handleDeleteSection}
-//           >
-//             Delete
-//           </button>
-//         </div>
-//       </div>
-
-//       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-//         <SortableContext items={section.fields.map((f) => f.id)} strategy={verticalListSortingStrategy}>
-//           {section.fields.map((field) => (
-//             <SortableField
-//               key={field.id}
-//               field={field}
-//               onEdit={() => setEditField(field)}
-//               onDelete={handleFieldDelete}
-//             />
-//           ))}
-//         </SortableContext>
-//       </DndContext>
-
-//       {previewSectionId === section.id && (
-//         <FieldPreview fields={section.fields} />
-//       )}
-
-//       {editField && (
-//         <FieldEditModal
-//           field={editField}
-//           setField={setEditField}
-//           onSave={handleFieldSave}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Section;
-
 
 import React, { useState } from 'react';
 import {
@@ -303,7 +151,7 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
       {/* Content Section */}
       <div className="p-6">
         {/* Drop Zone Indicator */}
-        <div className="min-h-[100px] relative">
+        <div className="min-h-[300px] relative">
           {section.fields.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center p-8 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 w-full">
@@ -340,7 +188,7 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
               <h4 className="font-semibold text-gray-700">Live Preview</h4>
             </div>
             <div className="bg-white rounded-lg p-4 shadow-inner border border-gray-200">
-              <FieldPreview fields={section.fields} />
+              <FieldPreview fields={section.fields} name={section.name} />
             </div>
           </div>
         </div>

@@ -1,44 +1,7 @@
-// import React from 'react';
-// import { useSortable } from '@dnd-kit/sortable';
-// import { CSS } from '@dnd-kit/utilities';
-
-// const SortableField = ({ field, onEdit, onDelete }) => {
-//   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-//     id: field.id,
-//   });
-
-//   const style = {
-//     transform: CSS.Transform.toString(transform),
-//     transition,
-//   };
-
-//   return (
-//     <div
-//       ref={setNodeRef}
-//       style={style}
-//       className="p-2 border rounded bg-white mb-2 shadow flex justify-between items-center"
-//     >
-//       <div {...attributes} {...listeners} className="cursor-move flex-1">
-//         {field.label} ({field.fieldType}) {field.required && '*'}
-//       </div>
-//       <div className="flex gap-2 ml-2">
-//         <button className="text-xs bg-yellow-300 px-2 py-0.5 rounded" onClick={onEdit}>
-//           Edit
-//         </button>
-//         <button className="text-xs bg-red-400 text-white px-2 py-0.5 rounded" onClick={() => onDelete(field.id)}>
-//           Delete
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SortableField;
-
-
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { Binary, CalendarDays, Circle, CircleCheckBig, Clock, LetterText, Link, LockKeyhole, Mail, MessageCircle, MoveUp, Palette, Phone, SquareMousePointer, Upload } from 'lucide-react';
 
 const SortableField = ({ field, onEdit, onDelete }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
@@ -53,21 +16,21 @@ const SortableField = ({ field, onEdit, onDelete }) => {
   // Field type icons and colors
   const getFieldIcon = (fieldType) => {
     const iconMap = {
-      text: '📝',
-      email: '📧',
-      password: '🔒',
-      number: '🔢',
-      date: '📅',
-      textarea: '📄',
-      select: '📋',
-      radio: '🔘',
-      checkbox: '☑️',
-      file: '📎',
-      color: '🎨',
-      range: '🎚️',
-      time: '⏰',
-      url: '🔗',
-      tel: '📞'
+      text: <LetterText />,
+      email: <Mail />,
+      password: <LockKeyhole />,
+      number: <Binary />,
+      date: <CalendarDays />,
+      textarea: <MessageCircle />,
+      select: <SquareMousePointer />,
+      radio: <Circle />,
+      checkbox: <CircleCheckBig />,
+      file: <Upload />,
+      color: <Palette />,
+      range: <MoveUp />,
+      time: <Clock />,
+      url: <Link />,
+      tel: <Phone />
     };
     return iconMap[fieldType] || '📝';
   };

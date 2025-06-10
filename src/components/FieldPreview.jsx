@@ -1,51 +1,26 @@
-// import React from 'react';
-
-// const FieldPreview = ({ fields }) => (
-//   <div className="mt-4 p-4 bg-white border rounded">
-//     <h4 className="font-semibold mb-2">Preview</h4>
-//     {fields.length === 0 ? (
-//       <p className="text-gray-500 italic">No fields yet.</p>
-//     ) : (
-//       fields.map((field) => (
-//         <div key={field.id} className="mb-2">
-//           <label className="block text-sm font-medium">{field.label}</label>
-//           <input
-//             type={field.fieldType}
-//             className="border px-2 py-1 rounded w-full"
-//             placeholder={field.placeholder || ''}
-//             disabled
-//           />
-//         </div>
-//       ))
-//     )}
-//   </div>
-// );
-
-// export default FieldPreview;
-
-
 import { ScanSearch } from 'lucide-react';
 import React from 'react';
+import { Binary, CalendarDays, Circle, CircleCheckBig, Clock, LetterText, Link, LockKeyhole, Mail, MessageCircle, MoveUp, Palette, Phone, SquareMousePointer, Upload } from 'lucide-react';
 
-const FieldPreview = ({ fields }) => {
+const FieldPreview = ({ fields,name }) => {
   // Field type icons and colors
   const getFieldIcon = (fieldType) => {
     const iconMap = {
-      text: '📝',
-      email: '📧',
-      password: '🔒',
-      number: '🔢',
-      date: '📅',
-      textarea: '📄',
-      select: '📋',
-      radio: '🔘',
-      checkbox: '☑️',
-      file: '📎',
-      color: '🎨',
-      range: '🎚️',
-      time: '⏰',
-      url: '🔗',
-      tel: '📞'
+      text: <LetterText />,
+      email: <Mail />,
+      password: <LockKeyhole />,
+      number: <Binary />,
+      date: <CalendarDays />,
+      textarea: <MessageCircle />,
+      select: <SquareMousePointer />,
+      radio: <Circle />,
+      checkbox: <CircleCheckBig />,
+      file: <Upload />,
+      color: <Palette />,
+      range: <MoveUp />,
+      time: <Clock />,
+      url: <Link />,
+      tel: <Phone />
     };
     return iconMap[fieldType] || '📝';
   };
@@ -144,16 +119,15 @@ const FieldPreview = ({ fields }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl shadow-lg overflow-hidden">
+    <div className="z-20 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl shadow-lg overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white bg-opacity-20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-            <span className="text-2xl"><ScanSearch color='black'/></span>
+            <span className="text-2xl"><ScanSearch color='black' /></span>
           </div>
           <div>
-            <h4 className="text-xl font-bold">Live Preview</h4>
-            <p className="text-indigo-100 text-sm">See how your form will look</p>
+            <h4 className="text-xl font-bold">{name}</h4>
           </div>
         </div>
       </div>
@@ -198,7 +172,7 @@ const FieldPreview = ({ fields }) => {
                 {/* Field Input */}
                 <div className="relative">
                   {renderField(field)}
-                  
+
                   {/* Disabled overlay indicator */}
                   <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <div className="bg-gray-800 text-white text-xs px-2 py-1 rounded-full">
@@ -230,19 +204,6 @@ const FieldPreview = ({ fields }) => {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Footer */}
-      <div className="bg-gray-50 border-t border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center gap-2 text-gray-500">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Live Preview Active</span>
-          </div>
-          <div className="text-gray-400">
-            {fields.length} field{fields.length !== 1 ? 's' : ''} total
-          </div>
-        </div>
       </div>
     </div>
   );
