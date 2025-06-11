@@ -1,5 +1,5 @@
 // SectionContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const SectionContext = createContext();
@@ -10,6 +10,17 @@ export const SectionProvider = ({ children }) => {
     const [sections, setSections] = useState([
         { id: uuidv4(), name: 'Section 1', fields: [] },
     ]);
+
+    useEffect(() => {
+        const stored = localStorage.getItem('formSections');
+        if (stored) {
+            try {
+                setSections(JSON.parse(stored));
+            } catch (e) {
+                console.error('Failed to parse stored sections:', e);
+            }
+        }
+    }, []);
 
     const addFieldToSection = (sectionId, field) => {
         setSections((prevSections) =>
@@ -32,6 +43,11 @@ export const SectionProvider = ({ children }) => {
         ]);
     };
 
+    const saveAllSections = () => {
+        localStorage.setItem('formSections', JSON.stringify(sections));
+        alert("content Saved successfully")
+    };
+
     const reorderFields = (sectionId, newFieldOrder) => {
         setSections((prev) =>
             prev.map((sec) =>
@@ -47,7 +63,8 @@ export const SectionProvider = ({ children }) => {
         setSections,
         addFieldToSection,
         addSection,
-        reorderFields
+        reorderFields,
+        saveAllSections
     };
 
     return <SectionContext.Provider value={value}>{children}</SectionContext.Provider>;

@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import Section from './Section';
 import { useSectionContext } from '../context/context';
 import { v4 as uuidv4 } from 'uuid';
+import { SaveAll } from 'lucide-react';
 
 const Canvas = () => {
-  const { sections, addSection } = useSectionContext();
+  const { sections, addSection , saveAllSections} = useSectionContext();
   const [previewSectionId, setPreviewSectionId] = useState(null);
 
   return (
@@ -37,7 +38,7 @@ const Canvas = () => {
                 </svg>
                 Add Section
               </button>
-              
+
               {sections.length > 0 && (
                 <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-4 py-2 rounded-lg border border-gray-200">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,7 +47,19 @@ const Canvas = () => {
                   <span>{sections.length} Section{sections.length !== 1 ? 's' : ''}</span>
                 </div>
               )}
+
+
+              <button
+                className="group bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-green-700 hover:to-green-800 transition-all duration-200 transform hover:scale-105 hover:shadow-xl focus:ring-4 focus:ring-blue-200 outline-none flex items-center gap-2"
+              onClick={saveAllSections}
+              >
+                <SaveAll />
+                Save All
+              </button>
             </div>
+
+
+
           </div>
 
           {/* Sections Container */}
@@ -58,7 +71,7 @@ const Canvas = () => {
                   <div className="absolute -left-3 top-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-bold rounded-full flex items-center justify-center shadow-lg z-10">
                     {index + 1}
                   </div>
-                  
+
                   <Section
                     section={section}
                     previewSectionId={previewSectionId}
