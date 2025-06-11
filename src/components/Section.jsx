@@ -13,7 +13,7 @@ import FieldPreview from './FieldPreview';
 import FieldEditModal from './FieldEditModal';
 import { useSectionContext } from '../context/context';
 import { arrayMove } from '@dnd-kit/sortable';
-import { Trash2 } from 'lucide-react';
+import { Braces, Trash2 } from 'lucide-react';
 
 const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
   const {
@@ -62,16 +62,18 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
       prev.map((sec) =>
         sec.id === section.id
           ? {
-              ...sec,
-              fields: sec.fields.map((f) =>
-                f.id === updatedField.id ? updatedField : f
-              ),
-            }
+            ...sec,
+            fields: sec.fields.map((f) =>
+              f.id === updatedField.id ? updatedField : f
+            ),
+          }
           : sec
       )
     );
     setEditField(null);
   };
+
+
 
   const handleNameChange = (e) => {
     setSections((prev) =>
@@ -80,6 +82,37 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
       )
     );
   };
+
+  const [jsonOutput, setJsonOutput] = useState(null);
+
+  const handleGenerateJsonSchema = (section) => {
+    console.log(section)
+    const json = {
+      title: section.name,
+      type: "object",
+      properties: {},
+      required: {},
+    };
+
+    section.fields.forEach((field) => {
+      json.properties[field.id
+      ] = {
+        type: field.fieldType,
+        title: field.label,
+      };
+      if (field.required) json.required[field.id] = {
+        type: field.fieldType,
+        title: field.label,
+      };
+    });
+
+    setJsonOutput(
+      <pre className="mt-4 p-4 bg-gray-100 border rounded overflow-auto text-sm text-gray-800">
+        {JSON.stringify(json, null, 2)}
+      </pre>
+    );
+  };
+
 
   return (
     <div
@@ -112,14 +145,13 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
               </span>
             </h3>
           )}
-          
+
           <div className="flex flex-wrap gap-2 sm:gap-3">
             <button
-              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 ${
-                previewSectionId === section.id
-                  ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300'
-              }`}
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 ${previewSectionId === section.id
+                ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg'
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300'
+                }`}
               onClick={() =>
                 setPreviewSectionId(previewSectionId === section.id ? null : section.id)
               }
@@ -136,14 +168,23 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
                 </>
               )}
             </button>
-            
+
             <button
               className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
               onClick={handleDeleteSection}
             >
-              <span className="hidden sm:inline"><Trash2 color='white' size={20}/></span>
+              <span className="hidden sm:inline"><Trash2 color='white' size={20} /></span>
               <span className="sm:hidden">🗑️</span>
             </button>
+
+            <button
+              className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+              onClick={() => { handleGenerateJsonSchema(section) }}
+            >
+              <span className="hidden sm:inline"><Braces /></span>
+            </button>
+
+
           </div>
         </div>
       </div>
@@ -191,6 +232,21 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
               <FieldPreview fields={section.fields} name={section.name} />
             </div>
           </div>
+        </div>
+      )}
+
+      {jsonOutput && (
+        <div className="p-6 border-t border-gray-200 bg-white relative">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="font-semibold text-gray-700">Generated JSON Schema</h4>
+            <button
+              onClick={() => setJsonOutput(null)}
+              className="text-sm text-red-600 hover:text-red-800 font-medium transition"
+            >
+              ✖ Cancel
+            </button>
+          </div>
+          {jsonOutput}
         </div>
       )}
 
