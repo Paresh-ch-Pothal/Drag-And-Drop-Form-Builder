@@ -33,16 +33,19 @@ const FieldPreview = ({ fields,name }) => {
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 resize-none bg-gray-50"
             placeholder={field.placeholder || 'Enter your text here...'}
             rows="4"
-            disabled
+
           />
         );
       case 'select':
         return (
           <select
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 bg-gray-50 cursor-not-allowed"
-            disabled
           >
             <option>Choose an option...</option>
+            {field.options.map((opt)=>{
+              return(
+              <option>{opt}</option>)
+            })}
           </select>
         );
       case 'radio':
@@ -54,7 +57,6 @@ const FieldPreview = ({ fields,name }) => {
                   type="radio"
                   name={field.id}
                   className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                  disabled
                 />
                 <span className="text-gray-700">{option}</span>
               </label>
@@ -69,7 +71,6 @@ const FieldPreview = ({ fields,name }) => {
                 <input
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  disabled
                 />
                 <span className="text-gray-700">{option}</span>
               </label>
@@ -112,7 +113,6 @@ const FieldPreview = ({ fields,name }) => {
             type={field.fieldType}
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 bg-gray-50"
             placeholder={field.placeholder || `Enter ${field.fieldType}...`}
-            disabled
           />
         );
     }

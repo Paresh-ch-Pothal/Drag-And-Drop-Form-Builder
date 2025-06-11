@@ -99,6 +99,7 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
       ] = {
         type: field.fieldType,
         title: field.label,
+        enum: field.options
       };
       if (field.required) json.required[field.id] = {
         type: field.fieldType,
