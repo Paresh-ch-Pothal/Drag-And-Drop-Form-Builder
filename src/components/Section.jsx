@@ -192,7 +192,6 @@ const Section = ({ section, previewSectionId, setPreviewSectionId }) => {
 
       {/* Content Section */}
       <div className="p-6">
-        {/* Drop Zone Indicator */}
         <div className="min-h-[300px] relative">
           {section.fields.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center">

@@ -71,7 +71,7 @@ const SortableField = ({ field, onEdit, onDelete }) => {
       <div className="relative flex justify-between items-center p-4">
         {/* Drag handle and content */}
         <div {...attributes} {...listeners} className="cursor-move flex-1 flex items-center gap-3 min-w-0">
-          {/* Drag indicator */}
+
           <div className="flex flex-col gap-0.5 opacity-40 group-hover:opacity-70 transition-opacity duration-200">
             <div className="flex gap-0.5">
               <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
@@ -135,7 +135,6 @@ const SortableField = ({ field, onEdit, onDelete }) => {
           </button>
         </div>
 
-        {/* Always visible mobile buttons (fallback) */}
         <div className="flex gap-2 ml-4 sm:hidden">
           <button 
             className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white rounded-lg shadow-sm transition-all duration-200"
@@ -157,7 +156,7 @@ const SortableField = ({ field, onEdit, onDelete }) => {
         </div>
       </div>
 
-      {/* Bottom border animation */}
+
       <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${getFieldColor(field.fieldType)} opacity-0 group-hover:opacity-60 transition-opacity duration-300`}></div>
     </div>
   );

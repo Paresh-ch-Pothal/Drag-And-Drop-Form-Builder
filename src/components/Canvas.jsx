@@ -11,10 +11,8 @@ const Canvas = () => {
 
   return (
     <div className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 relative">
-      {/* Main Canvas Container with proper height handling */}
       <div className="h-screen overflow-y-auto">
         <div className="p-6 min-h-full">
-          {/* Header Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -67,7 +65,6 @@ const Canvas = () => {
             <div className="space-y-6 pb-20">
               {sections.map((section, index) => (
                 <div key={section.id} className="relative">
-                  {/* Section Number Indicator */}
                   <div className="absolute -left-3 top-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-bold rounded-full flex items-center justify-center shadow-lg z-10">
                     {index + 1}
                   </div>
