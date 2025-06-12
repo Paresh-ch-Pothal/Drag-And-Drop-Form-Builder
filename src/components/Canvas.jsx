@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { SaveAll } from 'lucide-react';
 
 const Canvas = () => {
-  const { sections, addSection , saveAllSections} = useSectionContext();
+  const { sections, addSection} = useSectionContext();
   const [previewSectionId, setPreviewSectionId] = useState(null);
 
   return (
@@ -47,13 +47,13 @@ const Canvas = () => {
               )}
 
 
-              <button
+              {/* <button
                 className="group bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-green-700 hover:to-green-800 transition-all duration-200 transform hover:scale-105 hover:shadow-xl focus:ring-4 focus:ring-blue-200 outline-none flex items-center gap-2"
               onClick={saveAllSections}
               >
                 <SaveAll />
                 Save All
-              </button>
+              </button> */}
             </div>
 
 

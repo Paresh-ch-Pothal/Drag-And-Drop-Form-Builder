@@ -7,20 +7,18 @@ const SectionContext = createContext();
 export const useSectionContext = () => useContext(SectionContext);
 
 export const SectionProvider = ({ children }) => {
-    const [sections, setSections] = useState([
-        { id: uuidv4(), name: 'Section 1', fields: [] },
-    ]);
 
-    useEffect(() => {
-        const stored = localStorage.getItem('formSections');
-        if (stored) {
-            try {
-                setSections(JSON.parse(stored));
-            } catch (e) {
-                console.error('Failed to parse stored sections:', e);
-            }
+    const [sections, setSections] = useState(() => {
+        try {
+            const stored = localStorage.getItem('formSections');
+            return stored ? JSON.parse(stored) : [
+                { id: uuidv4(), name: 'Section 1', fields: [] }
+            ];
+        } catch (e) {
+            console.error('Failed to parse stored sections:', e);
+            return [{ id: uuidv4(), name: 'Section 1', fields: [] }];
         }
-    }, []);
+    });
 
     const addFieldToSection = (sectionId, field) => {
         setSections((prevSections) =>
@@ -43,10 +41,12 @@ export const SectionProvider = ({ children }) => {
         ]);
     };
 
-    const saveAllSections = () => {
+    useEffect(() => {
         localStorage.setItem('formSections', JSON.stringify(sections));
-        alert("content Saved successfully")
-    };
+        // alert("content Saved successfully")
+        console.log("Sections saved to localStorage");
+    }, [sections])
+
 
     const reorderFields = (sectionId, newFieldOrder) => {
         setSections((prev) =>
@@ -64,7 +64,6 @@ export const SectionProvider = ({ children }) => {
         addFieldToSection,
         addSection,
         reorderFields,
-        saveAllSections
     };
 
     return <SectionContext.Provider value={value}>{children}</SectionContext.Provider>;
